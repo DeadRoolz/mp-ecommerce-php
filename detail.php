@@ -102,7 +102,7 @@
                                             <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="6|Powerbeats3 Wireless Earphones - Neighborhood Collection - Brick Red|MPXP2">
                                                 <div class="as-tilegallery-element as-image-selected">
                                                     <div class=""></div>
-                                                    <img src="./assets/003.jpg" class="ir ir item-image as-producttile-image" alt="" width="445" height="445" style="content:-webkit-image-set(url(<?php echo $_POST['img'] ?>) 2x);">
+                                                    <img src="./assets/003.jpg" class="ir ir item-image as-producttile-image" alt="" width="445" height="445" style="content:-webkit-image-set(url(<?php echo $_POST['img']; ?>) 2x);">
                                                 </div>
                                                 
                                             </div>
@@ -136,8 +136,9 @@
                                     
                                     require __DIR__ .  '/vendor/autoload.php';
 
-                                    MercadoPago\SDK::setAccessToken('APP_USR-334491433003961-030821-12d7475807d694b645722c1946
-d5ce5a-725736327');
+                                    MercadoPago\SDK::setAccessToken('APP_USR-334491433003961-030821-12d7475807d694b645722c1946d5ce5a-725736327');
+
+                                    MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 
                                     $preference = new MercadoPago\Preference();
 
@@ -149,7 +150,41 @@ d5ce5a-725736327');
                                     $item->quantity = 1;
                                     $item->picture_url = 'https://deadroolz-mp-ecommerce-php.herokuapp.com/' . $_POST['img'];
                                     $item->unit_price = $_POST['price'];
+
                                     $preference->items = array($item);
+
+
+                                    $payer = new MercadoPago\Payer();
+                                    $payer->name = 'Lalo Landa';
+                                    $payer->email = 'test_user_92801501@testuser.com';
+                                    $payer->phone = array(
+                                        'area_code' => '55',
+                                        'number' => '98529-8743',
+                                    );
+                                    $payer->address = array(
+                                        "zip_code" => '78134-190',
+                                        "street_name" => 'Insurgentes Sur',
+                                        "street_number" => '1602'
+                                    );
+                                    
+                                    $preference->payer = $payer;
+                                    $preference->notification_url = 'https://deadroolz-mp-ecommerce-php.herokuapp.com/notification.php';
+                                    $preference->auto_return = 'approved';
+                                    $preference->back_urls = [
+                                        'pending' => 'https://deadroolz-mp-ecommerce-php.herokuapp.com/pending.php',
+                                        'success' => 'https://deadroolz-mp-ecommerce-php.herokuapp.com/success.php',
+                                        'failure' => 'https://deadroolz-mp-ecommerce-php.herokuapp.com/failure.php',
+                                    ];
+
+                                    $preference->payment_methods = array(
+                                        'excluded_payment_methods' => [
+                                            [
+                                                'id' => 'amex'
+                                            ]
+                                            ],
+                                            'installments' => 6
+                                    );
+
                                     $preference->external_reference = 'geanpos.dev@gmail.com';
                                     $preference->save();
 
