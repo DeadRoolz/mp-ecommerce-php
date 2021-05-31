@@ -158,7 +158,7 @@ d5ce5a-725736327');
                                     <script src="https://sdk.mercadopago.com/js/v2"></script>
                                     
                                     
-                                    <div id = "cho-container"></div>
+                                    <div class = "cho-container"></div>
 
 
                                     <script>
@@ -173,7 +173,7 @@ d5ce5a-725736327');
                                             id: '<?php echo $preference->id; ?>'
                                         },
                                         render: {
-                                                container: '#cho-container', // Indica onde o botão de pagamento será exibido
+                                                container: '.cho-container', // Indica onde o botão de pagamento será exibido
                                                 label: 'Pague a compra', // Muda o texto do botão de pagamento (opcional)
                                         }
                                     });
