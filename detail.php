@@ -132,8 +132,52 @@
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
+                                    <?php
+                                    
+                                    require __DIR__ .  '/vendor/autoload.php';
+
+                                    MercadoPago\SDK::setAccessToken('APP_USR-334491433003961-030821-12d7475807d694b645722c1946
+d5ce5a-725736327');
+
+                                    $preference = new MercadoPago\Preference();
+
+                                    // Cria um item na preferência
+                                    $item = new MercadoPago\Item();
+                                    $item->id = '1234';
+                                    $item->title = $_POST['title'];
+                                    $item->description = 'Celular de Tienda e-commerce';
+                                    $item->quantity = 1;
+                                    $item->picture_url = 'https://deadroolz-mp-ecommerce-php.herokuapp.com/' . $_POST['img'];
+                                    $item->unit_price = $_POST['price'];
+                                    $preference->items = array($item);
+                                    $preference->external_reference = 'geanpos.dev@gmail.com';
+                                    $preference->save();
+
+                                    ?>
+
                                     <script src="https://sdk.mercadopago.com/js/v2"></script>
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
+                                    
+                                    
+                                    <div id = "cho-container"></div>
+
+
+                                    <script>
+                                    // Adicione as credenciais do SDK
+                                    const mp = new MercadoPago('APP_USR-6096a634-0b35-452c-94c9-a18adb8ffb15', {
+                                            locale: 'es-AR'
+                                    });
+
+                                    // Inicialize o checkout
+                                    mp.checkout({
+                                        preference: {
+                                            id: '<?php echo $preference->id; ?>'
+                                        },
+                                        render: {
+                                                container: '#cho-container', // Indica onde o botão de pagamento será exibido
+                                                label: 'Pague a compra', // Muda o texto do botão de pagamento (opcional)
+                                        }
+                                    });
+                                    </script>
                                 </div>
                             </div>
                         </div>
