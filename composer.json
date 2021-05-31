@@ -1,5 +1,13 @@
 {
-    "name": "mp-ecommerce-php",
+    "name": "geanpaulo/mp-ecommerce-php",
     "type": "project",
-    "require": {}
+    "authors": [
+        {
+            "name": "Gean Paulo",
+            "email": "geanpos.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "mercadopago/dx-php": "^2.3"
+    }
 }
