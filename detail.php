@@ -155,7 +155,8 @@
 
 
                                     $payer = new MercadoPago\Payer();
-                                    $payer->name = 'Lalo Landa';
+                                    $payer->first_name = 'Lalo';
+                                    $payer->last_name = 'Landa';
                                     $payer->email = 'test_user_92801501@testuser.com';
                                     $payer->phone = array(
                                         'area_code' => '55',
@@ -174,7 +175,7 @@
                                         'pending' => 'https://deadroolz-mp-ecommerce-php.herokuapp.com/pending.php',
                                         'success' => 'https://deadroolz-mp-ecommerce-php.herokuapp.com/success.php',
                                         'failure' => 'https://deadroolz-mp-ecommerce-php.herokuapp.com/failure.php',
-                                    ];
+                                    ];https://deadroolz-mp-ecommerce-php.herokuapp.com/success.php?collection_id=15118996980&collection_status=approved&payment_id=15118996980&status=approved&external_reference=geanpos.dev@gmail.com&payment_type=credit_card&merchant_order_id=2740142658&preference_id=725736327-722aa939-ad92-40c5-93e7-0c5bdb8ee467&site_id=MLB&processing_mode=aggregator&merchant_account_id=null
 
                                     $preference->payment_methods = array(
                                         'excluded_payment_methods' => [
