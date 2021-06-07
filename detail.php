@@ -154,20 +154,19 @@
                                     $preference->items = array($item);
 
 
-                                    $payer = [
-                                        'first_name' => 'Lalo',
-                                        'last_name' => 'Landa',
-                                        'email' => 'test_user_92801501@testuser.com',
-                                        'phone' => [
-                                            'area_code' => '55',
-                                            'number' => '98529-8743',
-                                        ],
-                                        'address' => [
-                                            'zip_code' => '78134-190',
-                                            'street_name' => 'Insurgentes Sur',
-                                            'street_number' => '1602'
-                                        ]
-                                    ];
+                                    $payer = new MercadoPago\Payer();
+                                    $payer->name = 'Lalo';
+                                    $payer->surname = 'Landa';
+                                    $payer->email = 'test_user_92801501@testuser.com';
+                                    $payer->phone = array(
+                                        'area_code' => '55',
+                                        'number' => '98529-8743',
+                                    );
+                                    $payer->address = array(
+                                        "zip_code" => '78134-190',
+                                        "street_name" => 'Insurgentes Sur',
+                                        "street_number" => '1602'
+                                    );
                                     
                                     $preference->payer = $payer;
                                     $preference->notification_url = 'https://deadroolz-mp-ecommerce-php.herokuapp.com/notification.php';
